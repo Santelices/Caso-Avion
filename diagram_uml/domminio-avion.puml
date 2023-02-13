@@ -1,0 +1,51 @@
+@startuml
+
+
+class Reserva{
+    Nombre(Pasajero)
+    Silla(posicion, clase)
+}
+
+class Pasajero{
+    nombre : string
+    cedula : int
+}
+
+class Silla{
+    NumerodeSillas: int
+    TipoDeClase: TipodeClase
+    Posicion : Posicion
+}
+class Posicion{
+    Ventana : ventana
+    Pasillo : pasillo 
+    Centro :  centro
+}
+
+class TipodeClase{
+    claseEjecutiva: 
+    claseEconomica: 
+}
+class CasodeUsoAvion{
+    RepositorioReservas: object
+    +RegistrarPasajero()
+    +EliminarPasajero()
+    +BuscarPasajero()
+    +AsientosOcupados() 
+}
+
+class RepositorioReservas{
+    Asientos : list
+    Pasajeros : list  
+}
+
+
+Silla *-- TipodeClase
+Silla *-- Posicion
+
+Reserva o-- Pasajero
+Reserva o-- Silla
+
+CasodeUsoAvion ..> Reserva
+CasodeUsoAvion --* RepositorioReservas
+@enduml
